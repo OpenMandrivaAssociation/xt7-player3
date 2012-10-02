@@ -74,7 +74,7 @@ Requires:	gambas3-gb-image
 Requires:	gambas3-gb-dbus
 Requires:	gambas3-gb-qt4 >= 3.3.1
 Requires:	gambas3-gb-gtk
-Requires:	gambas3-gb-gui >= 3.1.1
+Requires:	gambas3-gb-gui >= 3.3.1
 Requires:	gambas3-gb-form
 Requires:	gambas3-gb-xml
 Requires:	gambas3-gb-qt4-ext
