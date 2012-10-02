@@ -1,27 +1,20 @@
 ######################################################
 # SpecFile: xt7-player3.spec
+# For unstable branch do:
 # git clone https://github.com/kokoko3k/xt7-player.git 
-# git pull https://github.com/kokoko3k/xt7-player.git
 ######################################################
-
-%define debug_package	%{nil}
-
-######
 %define oname xt7-player
 
-Summary:	Xt7-player mplayer gui
+Summary:	Xt7-player mplayer GUI
 Name:		xt7-player3
-Version:	3.1.5
-Release:	6
-URL:		http://xt7-player.sourceforge.net/xt7forum/index.php
-# git
-Source:		https://github.com/kokoko3k/xt7-player.git/%{oname}.tar.gz
-# stable
-#Source:	http://wpage.unina.it/aorefice/xt7player_dist/%{oname}-src-%{version}.tar.gz
+Version:	3.3.1
+Release:	2
+URL:		http://xt7-player.sourceforge.net/xt7forum/
+Source:		https://github.com/kokoko3k/xt7-player.git/%{oname}-%{version}.tar.gz
 License:	GPLv2
 Group:		Video
 BuildArch:	noarch
-BuildRequires:	gambas3-runtime >= 3.1.1
+BuildRequires:	gambas3-runtime >= 3.3.1
 BuildRequires:	gambas3-gb-qt4
 BuildRequires:	gambas3-gb-form
 BuildRequires:	gambas3-gb-desktop
@@ -31,7 +24,7 @@ BuildRequires:	gambas3-gb-net-curl
 BuildRequires:	gambas3-gb-settings
 BuildRequires:	gambas3-gb-xml
 BuildRequires:	gambas3-gb-web
-BuildRequires:	gambas3-devel >= 3.1.1
+BuildRequires:	gambas3-devel >= 3.3.1
 BuildRequires:	gambas3-gb-image
 BuildRequires:	gambas3-gb-image-imlib
 BuildRequires:	gambas3-gb-image-io
@@ -55,7 +48,7 @@ Requires:	dvbsnoop
 Requires:	dvb-apps
 
 # 4 downloading from youtube
-Requires:	youtube-dl
+Requires:	youtube-dl >= 2012.09.27
 Requires:	xterm
 Requires:	wget
 
@@ -76,10 +69,10 @@ Requires:	%{_lib}taglib_c0
 Requires:	mplayer
 
 # 4 GUI
-Requires:	gambas3-runtime >= 3.1.1
+Requires:	gambas3-runtime >= 3.3.1
 Requires:	gambas3-gb-image
 Requires:	gambas3-gb-dbus
-Requires:	gambas3-gb-qt4 >= 3.1.1
+Requires:	gambas3-gb-qt4 >= 3.3.1
 Requires:	gambas3-gb-gtk
 Requires:	gambas3-gb-gui >= 3.1.1
 Requires:	gambas3-gb-form
@@ -101,67 +94,37 @@ Provides:	%{oname} == %{version}
 AutoReqProv:	no
 
 %description
-Xt7-Player, an (almost) complete mplayer gui
+Xt7-Player, an (almost) complete mplayer GUI
 This program is written in Gambas3, so you will need Gambas3 to be installed.
 
 %prep
-# stable
-# setup -q -n %{oname}-%{version}
+%setup -q -n %{oname}-%{version}
 
-#git
-%setup -q -n %{oname}
 
 %build
-# stable
-#configure
-#make
 
-# git
-gbc3 -e -a -g -t -p -m
-gba3
+%configure --prefix=/usr
+%make
 
 %install
-# stable
-#cd xt7-player
-
-# git && stable
-#bin
-install -d %{buildroot}%{_bindir}
-install -p xt7-player.gambas %{buildroot}%{_bindir}/xt7-player
-
+%makeinstall
 #icons
+cd xt7-player 
 install -d -m755 %{buildroot}{%{_miconsdir},%{_iconsdir},%{_liconsdir}}
 convert xt7-player.png -resize 32x32 %{buildroot}%{_iconsdir}/%{oname}.png
 convert xt7-player.png -resize 16x16 %{buildroot}%{_miconsdir}/%{oname}.png
 install -p xt7-player.png %{buildroot}%{_liconsdir}/xt7-player.png
 
 #menu entry
-install -d %{buildroot}%{_datadir}/applications
-cat << EOF > %{buildroot}%{_datadir}/applications/%{oname}.desktop
-[Desktop Entry]
-Name=xt7-player
-Comment=Xt7-Player, an (almost) complete mplayer gui
-Exec=xt7-player
-Icon=xt7-player
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=X-MandrivaLinux-Multimedia-Video;AudioVideo;Video;
-EOF
+desktop-file-install xt7-player.desktop \
+	--dir %{buildroot}%{_datadir}/applications
 
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{oname}.desktop
-
-# stable
-#cd ..
 
 %files
-# stable
-#doc ChangeLog AUTHORS COPYING README
-# git
-%doc COPYING README CHANGELOG_GIT AA_ToDo
-%{_bindir}/xt7-player
-%{_miconsdir}/xt7-player.png
-%{_iconsdir}/xt7-player.png
-%{_liconsdir}/xt7-player.png
+%doc COPYING README ChangeLog INSTALL
+%{_bindir}/*
+%{_iconsdir}/%{oname}.png
+%{_miconsdir}/%{oname}.png
+%{_liconsdir}/%{oname}.png
 %{_datadir}/applications/%{oname}.desktop
 
