@@ -8,9 +8,10 @@
 Summary:	Xt7-player mplayer GUI
 Name:		xt7-player3
 Version:	3.3.4
-Release:	2
+Release:	2.1
 URL:		http://xt7-player.sourceforge.net/xt7forum/
 Source:		https://github.com/kokoko3k/xt7-player.git/%{oname}-src-%{version}.tar.gz
+Patch0:         xt7-player-3.3.4-fixicons.patch
 License:	GPLv2
 Group:		Video
 BuildArch:	noarch
@@ -100,6 +101,7 @@ This program is written in Gambas3, so you will need Gambas3 to be installed.
 
 %prep
 %setup -q -n %{oname}-%{version}
+%patch0 -p1
 
 
 %build
@@ -110,8 +112,10 @@ This program is written in Gambas3, so you will need Gambas3 to be installed.
 %makeinstall
 #icons
 cd xt7-player 
-install -d -m755 %{buildroot}%{_datadir}/pixmaps
-install -p xt7-player.png %{buildroot}%{_datadir}/pixmaps/xt7-player.png
+install -d -m755 %{buildroot}{%{_miconsdir},%{_iconsdir},%{_liconsdir}}
+convert xt7-player.png -resize 32x32 %{buildroot}%{_iconsdir}/%{oname}.png
+convert xt7-player.png -resize 16x16 %{buildroot}%{_miconsdir}/%{oname}.png
+install -p xt7-player.png %{buildroot}%{_liconsdir}/xt7-player.png
 
 #menu entry
 desktop-file-install xt7-player.desktop \
@@ -121,6 +125,8 @@ desktop-file-install xt7-player.desktop \
 %files
 %doc COPYING README ChangeLog INSTALL
 %{_bindir}/*
-%{_datadir}/pixmaps/xt7-player.png
+%{_iconsdir}/%{oname}.png
+%{_miconsdir}/%{oname}.png
+%{_liconsdir}/%{oname}.png
 %{_datadir}/applications/%{oname}.desktop
 
