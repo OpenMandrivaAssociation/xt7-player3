@@ -11,7 +11,7 @@ Version:	3.3.5
 Release:	2.1
 URL:		http://xt7-player.sourceforge.net/xt7forum/
 Source:		https://github.com/kokoko3k/xt7-player.git/%{oname}-src-%{version}.tar.gz
-Patch0:         xt7-player-3.3.4-fixicons.patch
+Patch0:         xt7-player-3.3.5-fixicons.patch
 License:	GPLv2
 Group:		Video
 BuildArch:	noarch
