@@ -7,11 +7,11 @@
 
 Summary:	Xt7-player mplayer GUI
 Name:		xt7-player3
-Version:	3.3.5
-Release:	2.1
+Version:	3.3.7
+Release:	2
 URL:		http://xt7-player.sourceforge.net/xt7forum/
 Source:		https://github.com/kokoko3k/xt7-player.git/%{oname}-src-%{version}.tar.gz
-Patch0:         xt7-player-3.3.5-fixicons.patch
+Source1:	%{oname}.desktop
 License:	GPLv2
 Group:		Video
 BuildArch:	noarch
@@ -101,8 +101,6 @@ This program is written in Gambas3, so you will need Gambas3 to be installed.
 
 %prep
 %setup -q -n %{oname}-%{version}
-%patch0 -p1
-
 
 %build
 %configure --prefix=/usr
@@ -118,7 +116,7 @@ convert xt7-player.png -resize 16x16 %{buildroot}%{_miconsdir}/%{oname}.png
 install -p xt7-player.png %{buildroot}%{_liconsdir}/xt7-player.png
 
 #menu entry
-desktop-file-install xt7-player.desktop \
+desktop-file-install %{SOURCE1} \
 	--dir %{buildroot}%{_datadir}/applications
 
 
