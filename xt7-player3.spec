@@ -7,7 +7,7 @@
 
 Summary:	Xt7-player mplayer GUI
 Name:		xt7-player3
-Version:	3.3.7
+Version:	3.4.0
 Release:	2
 URL:		http://xt7-player.sourceforge.net/xt7forum/
 Source:		https://github.com/kokoko3k/xt7-player.git/%{oname}-src-%{version}.tar.gz
@@ -15,7 +15,7 @@ Source1:	%{oname}.desktop
 License:	GPLv2
 Group:		Video
 BuildArch:	noarch
-BuildRequires:	gambas3-runtime >= 3.3.4
+BuildRequires:	gambas3-runtime >= 3.4.0
 BuildRequires:	gambas3-gb-qt4
 BuildRequires:	gambas3-gb-form
 BuildRequires:	gambas3-gb-desktop
@@ -25,7 +25,7 @@ BuildRequires:	gambas3-gb-net-curl
 BuildRequires:	gambas3-gb-settings
 BuildRequires:	gambas3-gb-xml
 BuildRequires:	gambas3-gb-web
-BuildRequires:	gambas3-devel >= 3.3.4
+BuildRequires:	gambas3-devel >= 3.4.0
 BuildRequires:	gambas3-gb-image
 BuildRequires:	gambas3-gb-image-imlib
 BuildRequires:	gambas3-gb-image-io
@@ -37,7 +37,7 @@ BuildRequires:	pkgconfig(taglib)
 BuildRequires:	gambas3-gb-gui
 BuildRequires:	gambas3-gb-compress
 BuildRequires:	gambas3-gb-form-dialog
-BuildRequires:	gambas3-gb-signal >= 3.3.4
+BuildRequires:	gambas3-gb-signal >= 3.4.0
 # 4 desktop file check
 BuildRequires:	desktop-file-utils
 
@@ -70,12 +70,12 @@ Requires:	%{_lib}taglib_c0
 Requires:	mplayer
 
 # 4 GUI
-Requires:	gambas3-runtime >= 3.3.1
+Requires:	gambas3-runtime >= 3.4.0
 Requires:	gambas3-gb-image
 Requires:	gambas3-gb-dbus
-Requires:	gambas3-gb-qt4 >= 3.3.1
+Requires:	gambas3-gb-qt4 >= 3.4.0
 Requires:	gambas3-gb-gtk
-Requires:	gambas3-gb-gui >= 3.3.1
+Requires:	gambas3-gb-gui >= 3.4.0
 Requires:	gambas3-gb-form
 Requires:	gambas3-gb-xml
 Requires:	gambas3-gb-qt4-ext
@@ -88,7 +88,7 @@ Requires:	gambas3-gb-compress
 Requires:	gambas3-gb-desktop
 Requires:	gambas3-gb-web
 Requires:	gambas3-gb-net-curl
-Requires:	gambas3-gb-signal >= 3.3.4
+Requires:	gambas3-gb-signal >= 3.4.0
 Provides:	%{oname} == %{version}
 
 %rename Xt7-player3
