@@ -90,6 +90,9 @@ Requires:	gambas3-gb-web
 Requires:	gambas3-gb-net-curl
 Requires:	gambas3-gb-signal >= 3.4.0
 Provides:	%{oname} == %{version}
+# too many previous name
+Obsoletes: xt7-player3 =< %{version}
+Obsoletes: Xt7-player3 =< %{version}
 
 %rename Xt7-player3
 
