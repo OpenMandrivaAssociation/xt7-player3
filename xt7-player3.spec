@@ -7,15 +7,16 @@
 
 Summary:	Xt7-player mplayer GUI
 Name:		xt7-player3
-Version:	3.4.2
+Version:	3.5.1
 Release:	1
 URL:		http://xt7-player.sourceforge.net/xt7forum/
-Source:		http://wpage.unina.it/aorefice/xt7player_dist/xt7-3.4.2/autotools/%{oname}-3.4.2.tar.gz
+Source:		http://wpage.unina.it/aorefice/xt7player_dist/xt7-%{version}/autotools/%{oname}-%{version}.tar.gz
 Source1:	%{oname}.desktop
+Source100:	xt7-player3.rpmlintrc
 License:	GPLv2
 Group:		Video
 BuildArch:	noarch
-BuildRequires:	gambas3-runtime >= 3.4.1
+BuildRequires:	gambas3-runtime >= 3.5.0
 BuildRequires:	gambas3-gb-qt4
 BuildRequires:	gambas3-gb-form
 BuildRequires:	gambas3-gb-desktop
@@ -25,7 +26,7 @@ BuildRequires:	gambas3-gb-net-curl
 BuildRequires:	gambas3-gb-settings
 BuildRequires:	gambas3-gb-xml
 BuildRequires:	gambas3-gb-web
-BuildRequires:	gambas3-devel >= 3.4.1
+BuildRequires:	gambas3-devel >= 3.5.0
 BuildRequires:	gambas3-gb-image
 BuildRequires:	gambas3-gb-image-imlib
 BuildRequires:	gambas3-gb-image-io
@@ -37,7 +38,7 @@ BuildRequires:	pkgconfig(taglib)
 BuildRequires:	gambas3-gb-gui
 BuildRequires:	gambas3-gb-compress
 BuildRequires:	gambas3-gb-form-dialog
-BuildRequires:	gambas3-gb-signal >= 3.4.1
+BuildRequires:	gambas3-gb-signal >= 3.5.0
 # 4 desktop file install/check
 BuildRequires:	desktop-file-utils
 
@@ -49,9 +50,12 @@ Requires:	dvbsnoop
 Requires:	dvb-apps
 
 # 4 downloading from youtube
-Requires:	youtube-dl >= 2012.09.27
+Requires:	youtube-dl >= 2013.11.03
 Requires:	xterm
 Requires:	wget
+
+# 4 audio extract/convert
+Requires:	ffmpeg
 
 # 4 subtiles , manage, download a.s.o.
 Requires:	python >= 2.7
@@ -70,12 +74,12 @@ Requires:	%{_lib}taglib_c0
 Requires:	mplayer
 
 # 4 GUI
-Requires:	gambas3-runtime >= 3.4.1
+Requires:	gambas3-runtime >= 3.5.0
 Requires:	gambas3-gb-image
 Requires:	gambas3-gb-dbus
-Requires:	gambas3-gb-qt4 >= 3.4.1
+Requires:	gambas3-gb-qt4 >= 3.5.0
 Requires:	gambas3-gb-gtk
-Requires:	gambas3-gb-gui >= 3.4.1
+Requires:	gambas3-gb-gui >= 3.5.0
 Requires:	gambas3-gb-form
 Requires:	gambas3-gb-xml
 Requires:	gambas3-gb-qt4-ext
@@ -88,7 +92,7 @@ Requires:	gambas3-gb-compress
 Requires:	gambas3-gb-desktop
 Requires:	gambas3-gb-web
 Requires:	gambas3-gb-net-curl
-Requires:	gambas3-gb-signal >= 3.4.1
+Requires:	gambas3-gb-signal >= 3.5.0
 Provides:	%{oname} == %{version}-%{release}
 # too many previous name for it
 Obsoletes: xt7-player3 =< %{version}
@@ -124,7 +128,7 @@ desktop-file-install %{SOURCE1} \
 
 
 %files
-%doc COPYING README ChangeLog INSTALL
+%doc COPYING README ChangeLog 
 %{_bindir}/*
 %{_iconsdir}/%{oname}.png
 %{_miconsdir}/%{oname}.png
