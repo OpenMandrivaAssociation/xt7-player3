@@ -95,6 +95,10 @@ Requires:	gambas3-gb-desktop
 Requires:	gambas3-gb-web
 Requires:	gambas3-gb-net-curl
 Requires:	gambas3-gb-signal >= 3.5.1
+
+# 4 icecast
+BuildRequires:	gambas3-gb-libxml >= 3.5.1
+
 Provides:	%{oname} == %{version}-%{release}
 # too many previous name for it
 Obsoletes: xt7-player3 =< %{version}
