@@ -8,7 +8,7 @@
 Summary:	Xt7-player mplayer GUI
 Name:		xt7-player3
 Version:	3.5.2
-Release:	1
+Release:	2
 URL:		http://xt7-player.sourceforge.net/xt7forum/
 Source:		http://wpage.unina.it/aorefice/xt7player_dist/xt7-%{version}/autotools/%{oname}-%{version}.tar.gz
 Source1:	%{oname}.desktop
@@ -95,6 +95,11 @@ Requires:	gambas3-gb-desktop
 Requires:	gambas3-gb-web
 Requires:	gambas3-gb-net-curl
 Requires:	gambas3-gb-signal >= 3.5.1
+
+# 4 icecast
+BuildRequires:	gambas3-gb-libxml >= 3.5.1
+
+
 Provides:	%{oname} == %{version}-%{release}
 # too many previous name for it
 Obsoletes: xt7-player3 =< %{version}
