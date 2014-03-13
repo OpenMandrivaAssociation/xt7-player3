@@ -7,7 +7,7 @@
 
 Summary:	Xt7-player mplayer GUI
 Name:		xt7-player3
-Version:	3.5.1
+Version:	3.5.2
 Release:	1
 URL:		http://xt7-player.sourceforge.net/xt7forum/
 Source:		http://wpage.unina.it/aorefice/xt7player_dist/xt7-%{version}/autotools/%{oname}-%{version}.tar.gz
