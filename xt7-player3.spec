@@ -7,8 +7,11 @@
 
 Summary:	Xt7-player mplayer GUI
 Name:		xt7-player3
-Version:	3.5.2.2
-Release:	2
+# this is git version, fixed StartClass in git
+# TODO: pus a fix release ASAP
+
+Version:	3.5.2.3
+Release:	3
 URL:		http://xt7-player.sourceforge.net/xt7forum/
 Source:		http://wpage.unina.it/aorefice/xt7player_dist/xt7-%{version}/autotools/%{oname}-%{version}.tar.gz
 Source1:	%{oname}.desktop
@@ -117,13 +120,19 @@ This program is written in Gambas3, so you will need Gambas3 to be installed.
 %setup -q -n %{oname}-%{version}
 
 %build
-%configure --prefix=/usr
-%make
+# gambas build for git version
+gbc3 -e -a -g -t -p -m
+gba3
+#configure --prefix=/usr
+#make
 
 %install
-%makeinstall
+mkdir -p %{buildroot}%{_bindir}
+install -m755 xt7-player.gambas %{buildroot}%{_bindir}/
+#makeinstall
+
 #icons
-cd xt7-player 
+#cd xt7-player 
 install -d -m755 %{buildroot}{%{_miconsdir},%{_iconsdir},%{_liconsdir}}
 convert xt7-player.png -resize 32x32 %{buildroot}%{_iconsdir}/%{oname}.png
 convert xt7-player.png -resize 16x16 %{buildroot}%{_miconsdir}/%{oname}.png
@@ -135,7 +144,7 @@ desktop-file-install %{SOURCE1} \
 
 
 %files
-%doc COPYING README ChangeLog 
+%doc COPYING README CHANGELOG_GIT
 %{_bindir}/*
 %{_iconsdir}/%{oname}.png
 %{_miconsdir}/%{oname}.png
