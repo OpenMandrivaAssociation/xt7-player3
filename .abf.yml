@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   xt7-player-3.5.2.3.tar.gz: 577bfb551cee92138e76cb49a2b49d33d409b78d
+sources:
+  xt7-player-3.5.4.tar.gz: 9734cd4f9161561408f51d1ffcd92c8c76135b02

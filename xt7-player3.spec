@@ -1,17 +1,19 @@
 ######################################################
 # SpecFile: xt7-player3.spec
-# For unstable branch do:
+# For git do:
 # git clone https://github.com/kokoko3k/xt7-player.git 
 ######################################################
 %define oname xt7-player
 
+######################
+# switch here if git
+%define build_git 0
+######################
+
 Summary:	Xt7-player mplayer GUI
 Name:		xt7-player3
-# this is git version, fixed StartClass in git
-# TODO: pus a fix release ASAP
-
-Version:	3.5.2.3
-Release:	3
+Version:	3.5.4
+Release:	1
 URL:		http://xt7-player.sourceforge.net/xt7forum/
 Source:		http://wpage.unina.it/aorefice/xt7player_dist/xt7-%{version}/autotools/%{oname}-%{version}.tar.gz
 Source1:	%{oname}.desktop
@@ -55,7 +57,7 @@ Requires:	dvbsnoop
 Requires:	dvb-apps
 
 # 4 downloading from youtube
-Requires:	youtube-dl >= 2014.03.21
+Requires:	youtube-dl >= 2014.10.18
 Requires:	xterm
 Requires:	wget
 
@@ -75,7 +77,7 @@ Requires:	xdg-utils
 Requires:	%{_lib}taglib1
 Requires:	%{_lib}taglib_c0
 
-# default player, works also with mplayer2
+# default player
 Requires:	mplayer
 
 # 4 GUI
@@ -120,23 +122,36 @@ This program is written in Gambas3, so you will need Gambas3 to be installed.
 %setup -q -n %{oname}-%{version}
 
 %build
-# gambas build for git version
+%if %{build_git}
 gbc3 -e -a -g -t -p -m
 gba3
-#configure --prefix=/usr
-#make
+%else
+%configure --prefix=/usr
+%make
+%endif
 
 %install
+%if %{build_git}
 mkdir -p %{buildroot}%{_bindir}
 install -m755 xt7-player.gambas %{buildroot}%{_bindir}/
-#makeinstall
+%else
+%makeinstall
+%endif
 
 #icons
-#cd xt7-player 
+ %if %{build_git}
 install -d -m755 %{buildroot}{%{_miconsdir},%{_iconsdir},%{_liconsdir}}
 convert xt7-player.png -resize 32x32 %{buildroot}%{_iconsdir}/%{oname}.png
 convert xt7-player.png -resize 16x16 %{buildroot}%{_miconsdir}/%{oname}.png
 install -p xt7-player.png %{buildroot}%{_liconsdir}/xt7-player.png
+%else
+cd xt7-player
+install -d -m755 %{buildroot}{%{_miconsdir},%{_iconsdir},%{_liconsdir}}
+convert xt7-player.png -resize 32x32 %{buildroot}%{_iconsdir}/%{oname}.png
+convert xt7-player.png -resize 16x16 %{buildroot}%{_miconsdir}/%{oname}.png
+install -p xt7-player.png %{buildroot}%{_liconsdir}/xt7-player.png
+%endif
+
 
 #menu entry
 desktop-file-install %{SOURCE1} \
@@ -144,10 +159,20 @@ desktop-file-install %{SOURCE1} \
 
 
 %files
+%if %{build_git}
 %doc COPYING README CHANGELOG_GIT
+%else
+%doc ChangeLog COPYING README
+%endif
+
 %{_bindir}/*
 %{_iconsdir}/%{oname}.png
 %{_miconsdir}/%{oname}.png
 %{_liconsdir}/%{oname}.png
 %{_datadir}/applications/%{oname}.desktop
+
+
+
+
+
 
