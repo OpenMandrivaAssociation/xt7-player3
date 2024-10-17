@@ -9,7 +9,7 @@ Summary:	Xt7-player mplayer GUI
 Name:		xt7-player3
 Version:	3.3.1
 Release:	2
-URL:		http://xt7-player.sourceforge.net/xt7forum/
+URL:		https://xt7-player.sourceforge.net/xt7forum/
 Source:		https://github.com/kokoko3k/xt7-player.git/%{oname}-%{version}.tar.gz
 License:	GPLv2
 Group:		Video
